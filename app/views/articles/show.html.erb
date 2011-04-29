@@ -1,0 +1,28 @@
+
+<% unless @article.blank? %>
+  <table class="table_style">
+    <tr>
+      <th align="left"><%= t("article.title") %></th>
+      <td><%= @article.title %></td>
+    </tr>
+
+    <tr>
+      <th align="left"><%= t("article.mode") %></th>
+      <td><%= @article.mode %></td>
+    </tr>
+  </table>
+  
+  <br />
+  <br />
+  
+  <span class="menu">
+    <%= link_to t("menu.list"), { :action => "index", :page => params[:page] } %>
+    <%= link_to t("menu.edit"), { :action => "edit", :id => @article.id, :page => params[:page] } %>
+  </span>
+  
+  <br />
+<% else %>
+  <span class="menu">
+    <%= link_to t("menu.list"), { :action => "index", :page => params[:page] } %>
+  </span>
+<% end %>

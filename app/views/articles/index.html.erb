@@ -1,0 +1,33 @@
+<%# ページング %>
+<%= will_paginate @articles, :previous_label => 'Prev', :next_label => 'Next', :params => { :action => "index" } %><br />
+
+<table border="0">
+  <tr>
+    <th><%= t("article.title") %></th>
+    <th><%= t("article.mode") %></th>
+    <th><br /></th>
+    <th><br /></th>
+    <th><br /></th>
+    <th><br /></th>
+  </tr>
+
+<% @articles.each do |article| %>
+  <tr>
+    <td><%=h article.title %></td>
+    <td><%=h $mode[article.mode] %></td>
+    <td class="menu"><%= link_to "記事パート", { :controller => "article_parts", :action => "index", :article_id => article.id } %></td>
+    <td class="menu"><%= link_to t("menu.show"), { :action => "show", :id => article.id, :page => params[:page] } %></td>
+    <td class="menu"><%= link_to t("menu.edit"), { :action => "edit", :id => article.id, :page => params[:page] } %></td>
+    <td class="menu"><%= link_to t("menu.delete"), { :action => "destroy", :id => article.id, :page => params[:page] }, :confirm => '本当に削除してよろしいですか？' %></td>
+  </tr>
+<% end %>
+</table>
+
+<%# ページング %>
+<%= will_paginate @articles, :previous_label => 'Prev', :next_label => 'Next', :params => { :action => "index" } %><br />
+
+<br />
+
+<span class="menu">
+  <%= link_to t("menu.new"), { :action => "new" } %>
+</span>

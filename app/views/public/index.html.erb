@@ -1,0 +1,23 @@
+<%# ページング %>
+<%= will_paginate @articles, :previous_label => 'Prev', :next_label => 'Next', :params => { :action => "index" } %><br />
+
+<table>
+  <tr>
+    <th><%= t("article.title") %></th>
+    <th><%= t("article.mode") %></th>
+    <th><br /></th>
+  </tr>
+
+<% @articles.each do |article| %>
+  <tr>
+    <td><%=h article.title %></td>
+    <td><%=h $mode[article.mode] %></td>
+    <td class="menu"><%= link_to "記事パート", { :action => "part", :article_id => article.id } %></td>
+  </tr>
+<% end %>
+</table>
+
+<%# ページング %>
+<%= will_paginate @articles, :previous_label => 'Prev', :next_label => 'Next', :params => { :action => "index" } %><br />
+
+<br />

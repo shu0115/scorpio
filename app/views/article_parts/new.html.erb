@@ -1,0 +1,40 @@
+
+<% form_for :article_part, :url => { :action => "create" } do |f| %>
+  <%= f.error_messages %>
+
+  <%# 記事名 %>
+  <%= f.label :article_id, t("article_part.article") %>：
+  <%=h Article.get_title( @article_id ) %><br />
+  
+  <br />
+
+  <%# 記事パート名 %>
+  <%= f.label :title, t("article_part.title") %>：<br />
+  <%= f.text_field :title, :class => "input_field_width_200" %><br />
+  
+  <br />
+
+<% if false %>
+  <%# 番号 %>
+  <%= f.label :number, t("article_part.number") %>：<br />
+  <%= f.text_field :number, :class => "input_field_width_200" %><br />
+  
+  <br />
+<% end %>
+
+  <%# 内容 %>
+  <%= f.label :content, t("article_part.content") %>：<br />
+  <%= f.text_field :content, :class => "input_field_width_200" %><br />
+  
+  <br />
+
+  <%= f.hidden_field :article_id, { :value => @article_id } %>
+  <%= f.submit t("menu.create"), :disable_with => t("menu.create") %><br />
+<% end %>
+
+<br />
+<br />
+
+<span class="menu">
+  <%= link_to t("menu.list"), { :action => "index", :article_id => @article_id } %>
+</span>
